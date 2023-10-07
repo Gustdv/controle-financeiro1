@@ -3,7 +3,7 @@ const descItem = document.querySelector("#desc");
 const amount = document.querySelector("#amount");
 const type = document.querySelector("#type");
 const btnNew = document.querySelector("#btnNew");
-
+const btnEnvia = document.querySelector(".btnEnvia")
 const incomes = document.querySelector(".incomes");
 const expenses = document.querySelector(".expenses");
 const total = document.querySelector(".total");
@@ -13,6 +13,26 @@ let items;
 function abriralerta(){
   swal("Digite o Campo Corretamente");
 }
+
+
+btnEnvia.addEventListener("click", () => {
+    
+  //Conteudo do pdf
+  const contem = document.querySelector(".divTable")
+
+  //Configuração do arquivo final do pdf
+  const options = {
+    margin: [10,10,10,10],
+    filename:"controle-financeiro.pdf",
+    html2canvas: {scale: 2},
+    jsPDF: {unit: "mm", format: "a4", orientation: "portrait"}
+  }
+
+
+  // Gerar e baixar o pdf
+  html2pdf().set(options).from(contem).save();
+
+})
 
 
 //botão de incluir
